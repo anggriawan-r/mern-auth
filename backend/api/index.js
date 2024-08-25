@@ -1,5 +1,5 @@
-import authRoute from './routes/auth.route.js';
-import { connectDB } from './db/connectDB.js';
+import authRoute from '../src/routes/auth.route.js';
+import { connectDB } from '../src/db/connectDB.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -16,9 +16,12 @@ app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('/api/auth', authRoute);
+app.get('/', (req, res) => res.send('Express on Vercel'));
+app.use('/auth', authRoute);
 
 app.listen(PORT, () => {
   connectDB();
   console.log('Server started on port:', PORT);
 });
+
+export default app;

@@ -43,7 +43,7 @@ export const signup = async (req, res) => {
 
     generateTokenAndSetCookie(res, user._id);
 
-    sendVerificationEmail(user.email, verificationToken);
+    await sendVerificationEmail(user.email, verificationToken);
 
     res.status(201).json({
       success: true,
@@ -83,7 +83,7 @@ export const verifyEmail = async (req, res) => {
 
     await user.save();
 
-    sendWelcomeEmail(user.email, user.name);
+    await sendWelcomeEmail(user.email, user.name);
 
     res.status(200).json({
       success: true,
@@ -170,7 +170,7 @@ export const forgotPassword = async (req, res) => {
 
     await user.save();
 
-    sendPasswordResetEmail(
+    await sendPasswordResetEmail(
       user.email,
       `${process.env.CLIENT_URL}/reset-password/${resetToken}`
     );
@@ -211,7 +211,7 @@ export const resetPassword = async (req, res) => {
 
     await user.save();
 
-    sendResetSuccessEmail(user.email);
+    await sendResetSuccessEmail(user.email);
 
     res.status(200).json({
       success: true,

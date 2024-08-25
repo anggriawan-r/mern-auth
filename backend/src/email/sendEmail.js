@@ -1,6 +1,6 @@
 import { transporter } from './email.config.js';
 
-export const sendVerificationEmail = (email, verificationToken) => {
+export const sendVerificationEmail = async (email, verificationToken) => {
   const mailOptions = {
     from: 'anggriawan.net@gmail.com',
     to: email,
@@ -8,59 +8,78 @@ export const sendVerificationEmail = (email, verificationToken) => {
     text: `This is your verification token: ${verificationToken}`,
   };
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+        reject(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+        resolve(info);
+      }
+    });
   });
 };
 
-export const sendWelcomeEmail = (email, name) => {
+export const sendWelcomeEmail = async (email, name) => {
   const mailOptions = {
     from: 'anggriawan.net@gmail.com',
     to: email,
     subject: 'Welcome',
     text: `Welcome to our website, ${name}`,
   };
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
+
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+        reject(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+        resolve(info);
+      }
+    });
   });
 };
 
-export const sendPasswordResetEmail = (email, link) => {
+export const sendPasswordResetEmail = async (email, link) => {
   const mailOptions = {
     from: 'anggriawan.net@gmail.com',
     to: email,
     subject: 'Reset your password',
     text: `Click the link to reset your password: ${link}`,
   };
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
+
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+        reject(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+        resolve(info);
+      }
+    });
   });
 };
 
-export const sendResetSuccessEmail = (email) => {
+export const sendResetSuccessEmail = async (email) => {
   const mailOptions = {
     from: 'anggriawan.net@gmail.com',
     to: email,
     subject: 'Password reset successful',
     text: 'Your password has been reset successfully',
   };
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
+
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+        reject(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+        resolve(info);
+      }
+    });
   });
 };

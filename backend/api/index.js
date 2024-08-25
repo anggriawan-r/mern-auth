@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.get('/', (req, res) => res.send('Express on Vercel'));
-app.use('/auth', authRoute);
+app.use('/api/auth', authRoute);
 
 app.listen(PORT, () => {
   connectDB();

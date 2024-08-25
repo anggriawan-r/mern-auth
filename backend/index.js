@@ -1,5 +1,5 @@
-import authRoute from '../src/routes/auth.route.js';
-import { connectDB } from '../src/db/connectDB.js';
+import authRoute from './src/routes/auth.route.js';
+import { connectDB } from './src/db/connectDB.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.get('/', (req, res) => res.send('Express on Vercel'));
-app.use('/api/auth', authRoute);
+app.use('/auth', authRoute);
 
 app.listen(PORT, () => {
   connectDB();
